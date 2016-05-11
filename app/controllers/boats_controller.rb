@@ -1,5 +1,6 @@
 class BoatsController < ApplicationController
   def index
+    @boats = Boat.all
   end
 
   def show
@@ -10,7 +11,7 @@ class BoatsController < ApplicationController
   end
 
   def create
-    if Boat.where(name: params[:boat][:name]) == nil
+    if Boat.where(name: params[:boat][:name]).blank?
       @boat = Boat.new(name: params[:boat][:name], max_containers: params[:boat][:max_containers], location: params[:boat][:location], user_id: current_user.id)
       if @boat.save 
         flash[:notice] = "Your boat was created!"
@@ -31,7 +32,7 @@ class BoatsController < ApplicationController
 
   def update
     @boat = Boat.find(params[:id])
-    if Boat.where(name: params[:boat][:name]) == nil
+    if Boat.where(name: params[:boat][:name]).blank?
 
       @boat.update(name: params[:boat][:name], max_containers: params[:boat][:max_containers], location: params[:boat][:location])
       redirect_to boat_path(@boat)
