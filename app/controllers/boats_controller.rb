@@ -4,6 +4,7 @@ class BoatsController < ApplicationController
   end
 
   def show
+    @boat = Boat.find(params[:id])
   end
 
   def new
@@ -51,6 +52,10 @@ class BoatsController < ApplicationController
   end
 
   def destroy
+    Job.where(boat_id: params[:id]).each do |job|
+        job.delete
+      end
+    Boat.find(params[:id]).delete
   end
 
 end
