@@ -1,8 +1,21 @@
+<!-- Profile page -->
+
 <h1><%= @user.email %></h1>
 
-<h3>List of Boats</h3>
+<h3>Create New Boat</h3>
+<%= form_for @boat do |f| %>
+	<%=f.label :name %>
+	<%=f.text_field :name %>
+	<%=f.label :max_containers %>
+	<%=f.text_field :max_containers %>
+	<%=f.label :location %>
+	<%=f.text_field :location %>
+	<%=f.hidden_field :user_id, value: current_user.id %>
+	<%=f.submit "Create Boat" %>
+<% end %>
 
-<% @boats.each do |boat| %>
+<h3>List of Boats</h3>
+<% @boats.reverse.each do |boat| %>
 	<%= link_to boat.name, boat_path(boat) %>
 	<br>
 	<br>

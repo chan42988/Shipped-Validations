@@ -1,2 +1,6 @@
-<h1>Boats#show</h1>
-<p>Find me in app/views/boats/show.html.erb</p>
+<!-- Boat's "profile" page -->
+
+<h1><%= @boat.name %></h1>
+<p>Max containers: <%= @boat.max_containers %></p>
+<p>Current location: <%= @boat.location %></p>
+<%= link_to "Edit Boat", edit_boat_path(@boat) %>

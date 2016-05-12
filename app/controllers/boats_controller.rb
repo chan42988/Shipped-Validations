@@ -18,7 +18,7 @@ class BoatsController < ApplicationController
       redirect_to boat_path(@boat)
     else
       flash[:alert] = "Problem creating your boat!"
-      render :new
+      redirect_to :root
     end
   end
 
