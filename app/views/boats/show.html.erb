@@ -4,3 +4,26 @@
 <p>Max containers: <%= @boat.max_containers %></p>
 <p>Current location: <%= @boat.location %></p>
 <%= link_to "Edit Boat", edit_boat_path(@boat) %>
+<h3>Create a job</h3>
+<%= form_for @job do |f| %>
+	<%=f.label :name %>
+	<%=f.text_field :name %>
+	<%=f.label :cargo %>
+	<%= f.text_field :cargo %>
+	<%=f.label :origin %>
+	<%=f.text_field :origin %>
+	<%=f.label :destination %>
+	<%=f.text_field :destination %>
+	<%=f.label :containers_needed %>
+	<%=f.text_field :containers_needed %>
+	<%=f.label :cost %>
+	<%=f.text_field :cost %>
+	<%= f.hidden_field :user_id, value:current_user.id%>
+	<%= f.hidden_field :boat_id, value:@boat.id %>
+	<%=f.submit "create a job."%>
+<% end %>
+
+<h3>List of current jobs:</h3>
+<% @jobs.each do |j| %>
+	<%= link_to j.name, job_path(j) %>
+<% end %>

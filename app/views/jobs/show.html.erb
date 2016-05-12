@@ -1,2 +1,13 @@
-<h1>Jobs#show</h1>
-<p>Find me in app/views/jobs/show.html.erb</p>
+
+	<p>Job Name: <%= @job.name %></p>
+	<p>Cargo: <%= @job.cargo %></p>
+	<p>Origin: <%= @job.origin %></p>
+	<p>Destination: <%= @job.destination %></p>
+	<p>Conatiners needed: <%= @job.containers_needed %></p>
+	<p>Cost: <%= @job.cost %></p>
+	<p>Boat name: <%= link_to @job.boat.name, boat_path(@job.boat) %></p>
+	<p>Created by: <%= link_to @job.user.email, authenticated_root_path %></p>
+	<%= link_to "Edit", edit_job_path(@job)%>
+
+	
+
