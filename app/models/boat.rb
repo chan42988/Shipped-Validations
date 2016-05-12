@@ -4,5 +4,6 @@ class Boat < ActiveRecord::Base
 	has_many :jobs
 	validates_presence_of :name, on: :create
 	validates_presence_of :name, on: :update
+	validates :name, uniqueness: true
 
 end

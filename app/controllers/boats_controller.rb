@@ -12,18 +12,13 @@ class BoatsController < ApplicationController
   end
 
   def create
-    if Boat.where(name: params[:boat][:name]).blank?
-      @boat = Boat.new(name: params[:boat][:name], max_containers: params[:boat][:max_containers], location: params[:boat][:location], user_id: current_user.id)
-      if @boat.save 
-        flash[:notice] = "Your boat was created!"
-        redirect_to boat_path(@boat)
-      else
-        flash[:alert] = "Problem creating your boat!"
-        redirect_to :back
-      end
+    @boat = Boat.new(boat_params)
+    if @boat.save 
+      flash[:notice] = "Your boat was created!"
+      redirect_to boat_path(@boat)
     else
-      flash[:alert] = "A boat with that name already exists"
-        redirect_to :back
+      flash[:alert] = "Problem creating your boat!"
+      render :new
     end
   end
 
@@ -33,21 +28,12 @@ class BoatsController < ApplicationController
 
   def update
     @boat = Boat.find(params[:id])
-    if Boat.where(name: params[:boat][:name]).blank?
-
-      @boat.update(name: params[:boat][:name], max_containers: params[:boat][:max_containers], location: params[:boat][:location])
+    if @boat.update(boat_params)
+      flash[:notice] = "Boat updated successfully"
       redirect_to boat_path(@boat)
-
-    elsif @boat.name == params[:boat][:name]
-
-      @boat.update(max_containers: params[:boat][:max_containers], location: params[:boat][:location])
-      redirect_to boat_path(@boat)
-
     else
-
       flash[:alert] = "Update failed"
-        redirect_to :back
-
+      render :edit
     end
   end
 
@@ -56,6 +42,12 @@ class BoatsController < ApplicationController
         job.delete
       end
     Boat.find(params[:id]).delete
+    redirect_to boats_path
+  end
+
+  private   
+  def boat_params
+    params.require(:boat).permit(:name, :max_containers, :location, :user_id)   
   end
 
 end

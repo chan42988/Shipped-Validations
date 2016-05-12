@@ -6,6 +6,10 @@
 	<%=f.text_field :max_containers %>
 	<%=f.label :location %>
 	<%=f.text_field :location %>
+	<%=f.hidden_field :user_id, value: current_user.id %>
 	<%=f.submit "Update Boat" %>
 
 <% end %>
+
+
+<%= link_to "delete boat", boat_path(@boat), method: :delete %>
