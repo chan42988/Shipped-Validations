@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'boats#index'
+  root 'home#show'
   resources :boats, :jobs
 
+  get 'home/:id' => 'home#show'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
