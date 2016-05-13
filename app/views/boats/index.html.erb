@@ -1,7 +1,7 @@
 <h1>Index of Boats</h1>
 
 <% @boats.each do |boat| %>
-	Boat Name: <%= boat.name %> <br>
+	Boat Name: <%= link_to boat.name, boat_path(boat) %> <br>
 	Created by: <%= boat.user.email %>  <br>
 	<br>
 
