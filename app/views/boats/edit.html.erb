@@ -1,5 +1,4 @@
-<%= form_for @boat do |f| %>
-
+<%= form_for @boat, :html => { :multipart => true } do |f| %>
 	<%=f.label :name %>
 	<%=f.text_field :name %>
 	<%=f.label :max_containers %>
@@ -7,8 +6,10 @@
 	<%=f.label :location %>
 	<%=f.select :location, options_for_select([["Select location", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
 	<%=f.hidden_field :user_id, value: current_user.id %>
-	<%=f.submit "Update Boat" %>
-
+	<div class="actions">
+    <%= f.file_field :avatar %>
+    <%= f.submit :submit, data: {disable_with: "Submitting..."} %>
+  </div>
 <% end %>
 
 
