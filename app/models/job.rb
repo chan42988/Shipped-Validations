@@ -7,7 +7,7 @@ class Job < ActiveRecord::Base
 	validates_presence_of :name, on: :update
 	validates :name, uniqueness: { case_sensitive: false }
 
-	validates :cost, numericality: { :greater_than_or_equal_to: 1000.00 }
-	validates :crago, length: { minimum: 50 }
+	validates :cost, numericality: { greater_than_or_equal_to: 1000.00 }
+	validates :cargo, length: { minimum: 50 }
 
 end

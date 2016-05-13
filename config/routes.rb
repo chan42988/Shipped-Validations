@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :boats, :jobs
+  resources :jobs
+  resources :boats, except: [:new]
   resources :home, only: [:show]
 
   # get 'home/:id' => 'home#show'

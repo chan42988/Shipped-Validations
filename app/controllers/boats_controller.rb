@@ -9,10 +9,6 @@ class BoatsController < ApplicationController
     @jobs = Job.where(boat_id: params[:id])
   end
 
-  def new
-    @boat = Boat.new
-  end
-
   def create
     @boat = Boat.new(boat_params)
     if @boat.save 
@@ -20,7 +16,7 @@ class BoatsController < ApplicationController
       redirect_to boat_path(@boat)
     else
       flash[:alert] = "Problem creating your boat!"
-      redirect_to :root
+      redirect_to authenticated_root_path
     end
   end
 
