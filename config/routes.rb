@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :boats, :jobs
   resources :home, only: [:show]
+  resources :follows, only: [:create, :destroy]
 
   # get 'home/:id' => 'home#show'
   devise_for :users
