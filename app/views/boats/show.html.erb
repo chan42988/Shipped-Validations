@@ -3,13 +3,16 @@
 <h1><%= @boat.name %></h1>
 <p>Max containers: <%= @boat.max_containers %></p>
 <p>Current location: <%= @boat.location %></p>
+
+<%= image_tag(@boat.avatar.url(:medium))%>
+
 <%= link_to "Edit Boat", edit_boat_path(@boat) %>
 <h3>Create a job</h3>
 <%= form_for @job do |f| %>
 	<%=f.label :name %>
 	<%=f.text_field :name %>
 	<%=f.label :cargo %>
-	<%= f.text_field :cargo %>
+	<%=f.text_field :cargo %>
 	<%=f.label :origin %>
 	<%=f.text_field :origin %>
 	<%=f.label :destination %>
