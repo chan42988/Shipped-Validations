@@ -3,28 +3,33 @@
 <h1><%= @boat.name %></h1>
 <p>Max containers: <%= @boat.max_containers %></p>
 <p>Current location: <%= @boat.location %></p>
-
 <%= image_tag(@boat.avatar.url(:medium))%>
-
-<%= link_to "Edit Boat", edit_boat_path(@boat) %>
-<h3>Create a job</h3>
-<%= form_for @job do |f| %>
-	<%=f.label :name %>
-	<%=f.text_field :name %>
-	<%=f.label :cargo %>
-	<%=f.text_field :cargo %>
-	<%=f.label :origin %>
-	<%=f.select :origin, options_for_select([["Select origin", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
-	<%=f.label :destination %>
-	<%=f.select :destination, options_for_select([["Select destination", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
-	<%=f.label :containers_needed %>
-	<%=f.text_field :containers_needed %>
-	<%=f.label :cost %>
-	<%=f.text_field :cost %>
-	<%= f.hidden_field :user_id, value:current_user.id%>
-	<%= f.hidden_field :boat_id, value:@boat.id %>
-	<%=f.submit "create a job"%>
+<% if current_user.id == @boat.user_id %>
+	<%= link_to "Edit Boat", edit_boat_path(@boat) %>
+	<h3>Create a job</h3>
+	<%= form_for @job do |f| %>
+		<%=f.label :name %>
+		<%=f.text_field :name %>
+		<%=f.label :cargo %>
+		<%=f.text_field :cargo %>
+		<%=f.label :origin %>
+		<%=f.select :origin, options_for_select([["Select origin", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
+		<%=f.label :destination %>
+		<%=f.select :destination, options_for_select([["Select destination", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
+		<%=f.label :containers_needed %>
+		<%=f.text_field :containers_needed %>
+		<%=f.label :cost %>
+		<%=f.text_field :cost %>
+		<%= f.hidden_field :user_id, value:current_user.id%>
+		<%= f.hidden_field :boat_id, value:@boat.id %>
+		<%=f.submit "create a job"%>
+	<% end %>
+<% else %>
+	<%= form_for @follow, url: follows_path do |f| %>
+		<%= f.hidden_field :boat_id, value:@boat.id %>
+		<%=f.submit "Follow"%>
 <% end %>
+
 
 <h3>List of current jobs:</h3>
 <% @jobs.each do |j| %>

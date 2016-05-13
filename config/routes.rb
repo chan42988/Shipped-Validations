@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :jobs, except: [:new, :index]
   resources :boats, except: [:new]
   resources :home, only: [:show]
+  resources :follows, only: [:create, :destroy]
 
   devise_for :users
   
