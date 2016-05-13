@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :boats, :jobs
+  resources :jobs, except: [:new, :index]
+  resources :boats, except: [:new]
   resources :home, only: [:show]
   resources :follows, only: [:create, :destroy]
 
-  # get 'home/:id' => 'home#show'
   devise_for :users
   
-
-
-
   devise_scope :user do
    authenticated :user do
      root 'home#show', as: :authenticated_root

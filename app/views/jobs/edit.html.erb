@@ -5,9 +5,9 @@
 	<%=f.label :cargo %>
 	<%= f.text_field :cargo %>
 	<%=f.label :origin %>
-	<%=f.text_field :origin %>
+	<%=f.select :origin, options_for_select([["Select origin", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
 	<%=f.label :destination %>
-	<%=f.text_field :destination %>
+	<%=f.select :destination, options_for_select([["Select destination", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
 	<%=f.label :containers_needed %>
 	<%=f.text_field :containers_needed %>
 	<%=f.label :cost %>

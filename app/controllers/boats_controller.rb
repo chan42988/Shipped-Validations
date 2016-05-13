@@ -11,10 +11,6 @@ class BoatsController < ApplicationController
     
   end
 
-  def new
-    @boat = Boat.new
-  end
-
   def create
     @boat = Boat.new(boat_params)
     if @boat.save 
@@ -22,7 +18,7 @@ class BoatsController < ApplicationController
       redirect_to boat_path(@boat)
     else
       flash[:alert] = "Problem creating your boat!"
-      redirect_to :root
+      redirect_to '/'
     end
   end
 
@@ -51,7 +47,7 @@ class BoatsController < ApplicationController
 
   private   
   def boat_params
-    params.require(:boat).permit(:name, :max_containers, :location, :user_id)   
+    params.require(:boat).permit(:name, :max_containers, :location, :user_id, :avatar)   
   end
 
 end

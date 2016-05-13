@@ -3,19 +3,23 @@
 <h1><%= @user.email %></h1>
 
 <h3>Create New Boat</h3>
-<%= form_for @boat do |f| %>
+<%= form_for @boat, :url => boats_path, :html => { :multipart => true } do |f| %>
 	<%=f.label :name %>
 	<%=f.text_field :name %>
 	<%=f.label :max_containers %>
 	<%=f.text_field :max_containers %>
 	<%=f.label :location %>
-	<%=f.text_field :location %>
+	<%=f.select :location, options_for_select([["Select location", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
 	<%=f.hidden_field :user_id, value: current_user.id %>
-	<%=f.submit "Create Boat" %>
+	<div class="actions">
+    <%= f.file_field :avatar %>
+    <%= f.submit :submit, data: {disable_with: "Submitting..."} %>
+  </div>
 <% end %>
 
 <h3>List of Boats</h3>
 <% @boats.reverse.each do |boat| %>
+<%= image_tag(boat.avatar.url(:thumb))%>
 	<%= link_to boat.name, boat_path(boat) %>
 	<br>
 	<br>
