@@ -7,6 +7,9 @@
 	<%=f.label :location %>
 	<%=f.select :location, options_for_select([["Select location", ""], "Shanghai, China", "Los Angeles, USA", "London, UK", "New York City, USA", "Melbourne, Australia", "Tokyo, Japan", "Hamburg, Germany", "Santos, Brazil", "Colón, Panama", "Durban, South Africa"]) %>
 	<%=f.hidden_field :user_id, value: current_user.id %>
+	<div class="actions">
+    <%= f.file_field :avatar %>
+  </div>
 	<%=f.submit "Update Boat" %>
 
 <% end %>

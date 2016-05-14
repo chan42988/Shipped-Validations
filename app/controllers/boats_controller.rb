@@ -7,8 +7,7 @@ class BoatsController < ApplicationController
     @boat = Boat.find(params[:id])
     @job = Job.new
     @jobs = Job.where(boat_id: params[:id])
-    @follow = Follow.new
-    
+    @follow = Follow.where(user_id: current_user.id, boat_id: @boat.id).first
   end
 
   def create
