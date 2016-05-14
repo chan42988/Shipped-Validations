@@ -25,9 +25,16 @@
 		<%=f.submit "create a job"%>
 	<% end %>
 <% else %>
-	<%= form_for @follow, url: follows_path do |f| %>
-		<%= f.hidden_field :boat_id, value:@boat.id %>
-		<%=f.submit "Follow"%>
+	<div id="follow-buttons">
+		<% if !@follow %>
+			<%= form_for Follow.new, url: follows_path, remote: true do |f| %>
+				<%= f.hidden_field :boat_id, value:@boat.id %>
+				<%=f.submit "Follow"%>
+			<% end %>
+		<% else %>
+			<%= button_to "Unfollow", follow_path(@follow.id), method: :delete, remote: true %>
+		<% end %>
+	</div>
 <% end %>
 
 

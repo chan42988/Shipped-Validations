@@ -8,8 +8,8 @@
 	<%=f.hidden_field :user_id, value: current_user.id %>
 	<div class="actions">
     <%= f.file_field :avatar %>
-    <%= f.submit :submit, data: {disable_with: "Submitting..."} %>
   </div>
+	<%=f.submit "Update Boat" %>
 <% end %>
 
 
