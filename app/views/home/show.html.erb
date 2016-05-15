@@ -17,10 +17,20 @@
   </div>
 <% end %>
 
-<h3>List of Boats</h3>
+<h3>My Boats</h3>
 <% @boats.reverse.each do |boat| %>
 <%= image_tag(boat.avatar.url(:thumb))%>
 	<%= link_to boat.name, boat_path(boat) %>
+	<br>
+	<br>
+<% end %>
+
+<br>
+
+<h3>Boats I Follow</h3>
+<% @follows.reverse.each do |follow| %>
+	<%= image_tag(follow.boat.avatar.url(:thumb))%>
+	<%= link_to follow.boat.name, boat_path(follow.boat) %>
 	<br>
 	<br>
 <% end %>

@@ -1,8 +1,8 @@
 // use jquery to change the inner html of our div id="follow-buttons" to show the button to destroy a follow (the unfollow button)
 
-
-$("#follow-buttons").html("Follow");
-
+$("#follow_button").click(function(){
+	$("#follow_button").text("<%= button_to 'Unfollow', follow_path(@follow.id), method: :delete, remote: true %>");
+})
 
 // $("#follow-buttons").click(function(){
 //     $("#follow-buttons").text("Hello world!");

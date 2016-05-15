@@ -3,6 +3,7 @@
 <h1><%= @boat.name %></h1>
 <p>Max containers: <%= @boat.max_containers %></p>
 <p>Current location: <%= @boat.location %></p>
+<p>Created by: <%= @boat.user.email %></p>
 <%= image_tag(@boat.avatar.url(:medium))%>
 <% if current_user.id == @boat.user_id %>
 	<%= link_to "Edit Boat", edit_boat_path(@boat) %>
@@ -25,14 +26,11 @@
 		<%=f.submit "create a job"%>
 	<% end %>
 <% else %>
-	<div id="follow-buttons">
+	<div>
 		<% if !@follow %>
-			<%= form_for Follow.new, url: follows_path, remote: true do |f| %>
-				<%= f.hidden_field :boat_id, value:@boat.id %>
-				<%=f.submit "Follow"%>
-			<% end %>
+			<%= button_to  "Follow", follows_path(boat_id: @boat.id), method: :post, id: "follow_button" %>
 		<% else %>
-			<%= button_to "Unfollow", follow_path(@follow.id), method: :delete, remote: true %>
+			<%= button_to "Unfollow", follow_path(@follow.id), method: :delete, id: "unfollow_button" %>
 		<% end %>
 	</div>
 <% end %>
