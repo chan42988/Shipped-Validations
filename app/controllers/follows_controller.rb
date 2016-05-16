@@ -14,7 +14,7 @@ class FollowsController < ApplicationController
 
 	def destroy
 		@follow = Follow.find(params[:id])
-		@boat = Boat.where(@follow.boat_id).first
+		@boat = Boat.find(@follow.boat_id)
 		@follow.destroy
 		respond_to do |format|
 			format.js
