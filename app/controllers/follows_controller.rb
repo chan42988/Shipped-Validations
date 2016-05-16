@@ -5,22 +5,18 @@ class FollowsController < ApplicationController
 
 		respond_to do |format|
 			if @follow.save
-				format.html { redirect_to :back }
-				format.json { render :show, status: :created, location: @follow }
 				format.js
 			else
 				format.html { render :new }
-				format.json { render json: @follow.errors, status: :unprocessable_entity }
 			end
 		end
 	end
 
 	def destroy
 		@follow = Follow.find(params[:id])
+		@boat = Boat.where(@follow.boat_id).first
 		@follow.destroy
 		respond_to do |format|
-			format.html { redirect_to :back }
-			format.json { head :no_content }
 			format.js
 		end 
 	end

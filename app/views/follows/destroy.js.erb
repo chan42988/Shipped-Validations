@@ -1,1 +1,1 @@
-$("#unfollow_button").html('<%= button_to "Unfollow", follow_path(@follow.id), method: :delete, id: "unfollow_button" %>');
+$('#follow-buttons').html('<%= button_to  "Follow", follows_path(boat_id: @boat.id), method: :post, remote: true, id: "follow_button" %>')

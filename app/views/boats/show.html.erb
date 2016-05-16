@@ -26,11 +26,11 @@
 		<%=f.submit "create a job"%>
 	<% end %>
 <% else %>
-	<div>
+	<div id="follow-buttons">
 		<% if !@follow %>
-			<%= button_to  "Follow", follows_path(boat_id: @boat.id), method: :post, id: "follow_button" %>
+			<%= button_to  "Follow", follows_path(boat_id: @boat.id), method: :post, remote: true, id: "follow_button" %>
 		<% else %>
-			<%= button_to "Unfollow", follow_path(@follow.id), method: :delete, id: "unfollow_button" %>
+			<%= button_to "Unfollow", follow_path(@follow.id), method: :delete, remote: true, id: "unfollow_button" %>
 		<% end %>
 	</div>
 <% end %>
